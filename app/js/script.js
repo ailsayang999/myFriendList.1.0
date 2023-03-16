@@ -54,4 +54,9 @@ function renderFriendList (data){
 }
 
 
-
+//Add event listener to dataPanel (listen "more" button)
+dataPanel.addEventListener("click", function onPanelClicked(event) {
+  if (event.target.matches(".btn-show-friend")) {
+    showFriendDetail(event.target.dataset.id);
+  }
+});
