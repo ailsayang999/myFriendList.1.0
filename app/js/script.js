@@ -60,3 +60,27 @@ dataPanel.addEventListener("click", function onPanelClicked(event) {
     showFriendDetail(event.target.dataset.id);
   }
 });
+
+//function showFriendDetail
+function showFriendDetail(id) {
+  const friendName = document.querySelector("#friend-modal-name");
+  const friendAvatar = document.querySelector("#friend-modal-avatar");
+  const friendGender = document.querySelector("#friend-modal-gender");
+  const friendAge = document.querySelector("#friend-modal-age");
+  const friendBirthday = document.querySelector("#friend-modal-birthday");
+  const friendEmail = document.querySelector("#friend-modal-email");
+  axios.get(INDEX_URL + id).then((res) => {
+    console.log(res.data);
+    let data = res.data;
+    friendName.innerHTML = `<span>Name: ${data.name}</span>`;
+    friendGender.innerHTML = `<span>Gender: ${data.gender}</span>`;
+    friendAge.innerHTML = `<span>Age: ${data.age}</span>`;
+    friendBirthday.innerHTML = `<span>Birthday: ${data.birthday}</span>`;
+    friendEmail.innerHTML = `<span>Email: ${data.email}</span>`;
+    friendAvatar.innerHTML = `<img
+                  src="${data.avatar}"
+                  alt="friend-img"
+                  class="img-fluid"
+                />`;
+  });
+}
